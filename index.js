@@ -11,7 +11,12 @@ app.listen(port);
 console.log(`Now listening on port ${port}`);
 
 app.post('/file-size', upload.single('sizeCheck'), function(req, res){
-  res.send({
-    size: req.file.size
-  });
+  if(req.file){
+    res.send({
+      size: req.file.size
+    });
+  }
+  else {
+    res.send({});
+  }
 });
